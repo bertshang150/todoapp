@@ -5,8 +5,8 @@ jobs:
     docker:
       - image: circleci/php:7.1-node-browsers
         environment:
-          MYSQL_HOST: 192.168.0.127
-          MYSQL_DB: todo
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_DB: todoapp
           MYSQL_USER: root
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_PASSWORD:
@@ -48,7 +48,7 @@ jobs:
       - run: npm run production
       - run:
           name: Mysql database
-          command: mysql -h 192.168.0.127 -u root -e "create database todoapp;"
+          command: mysql -h 127.0.0.1 -u root -e "create database todoapp;"
       - run: php artisan key:generate
       - run: php artisan migrate
       - run: php artisan passport:install
